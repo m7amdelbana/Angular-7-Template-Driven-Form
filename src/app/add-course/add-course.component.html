@@ -1,0 +1,246 @@
+<div style="padding:48px 80px; background: rgb(238, 238, 238)">
+  <div
+    style="padding:48px; background: #FFFFFF;  border-radius: 24px; box-shadow: 5px 10pxr gb(238, 238, 238);"
+  >
+    <form #addCourseForm="ngForm">
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <input
+            required
+            ngModel
+            name="name"
+            id="name"
+            placeholder="Course Name"
+            #name="ngModel"
+            type="text"
+            class="form-control"
+          />
+          <div
+            style="margin-top: 8px;"
+            class="alert alert-danger"
+            *ngIf="name.touched && !name.valid"
+          >
+            Course Name is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <input
+            required
+            ngModel
+            name="description"
+            id="description"
+            #description="ngModel"
+            type="text"
+            placeholder="Description"
+            class="form-control"
+          />
+          <div
+            style="margin-top: 8px;"
+            class="alert alert-danger"
+            *ngIf="description.touched && !description.valid"
+          >
+            Description is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <textarea
+            required
+            ngModel
+            name="content"
+            id="content"
+            type="text"
+            cols="30"
+            #content="ngModel"
+            placeholder="Content"
+            rows="3"
+            class="form-control"
+          ></textarea>
+          <div
+            style="margin-top: 8px;"
+            class="alert alert-danger"
+            *ngIf="content.touched && !content.valid"
+          >
+            Content is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <input
+            required
+            ngModel
+            name="maxNumberOfStudents"
+            #maxNumberOfStudents="ngModel"
+            id="maxNumberOfStudents"
+            type="number"
+            placeholder="Max Number Of Students"
+            class="form-control"
+          />
+          <div
+            style="margin-top: 8px;"
+            class="alert alert-danger"
+            *ngIf="maxNumberOfStudents.touched && !maxNumberOfStudents.valid"
+          >
+            Max number of student is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <input
+            required
+            ngModel
+            name="numberOfSessions"
+            #numberOfSessions="ngModel"
+            id="numberOfSessions"
+            type="number"
+            placeholder="Number Of Sessions"
+            class="form-control"
+          />
+          <div
+            style="margin-top: 8px;"
+            class="alert alert-danger"
+            *ngIf="numberOfSessions.touched && !numberOfSessions.valid"
+          >
+            Number of sessions is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <input
+            required
+            ngModel
+            name="price"
+            id="price"
+            #price="ngModel"
+            type="number"
+            placeholder="Price"
+            class="form-control"
+          />
+          <div
+            style="margin-top: 8px;"
+            class="alert alert-danger"
+            *ngIf="price.touched && !price.valid"
+          >
+            Price is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label
+          for="instructors"
+          class="col-sm-2 col-form-label font-weight-normal"
+          >Choose Instructor</label
+        >
+        <div class="col-sm-10">
+          <select
+            name="instructor"
+            id="instructor"
+            #instructor="ngModel"
+            class="form-control"
+            [(ngModel)]="selectedInstructor"
+          >
+            <option [value]="i._id" *ngFor="let i of instructors$"
+              >{{ i.firstName }} {{ i.lastName }}</option
+            >
+          </select>
+          <!-- <div
+            style="margin-top: 8px;"
+            class="alert alert-danger"
+            *ngIf="instructor.touched && !instructor.valid"
+          >
+            Instructor is required.
+          </div> -->
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label
+          for="languages"
+          class="col-sm-2 col-form-label font-weight-normal"
+          >Choose Language</label
+        >
+        <div class="col-sm-10">
+          <select
+            name="language"
+            id="language"
+            #language="ngModel"
+            class="form-control"
+            [(ngModel)]="selectedLanguage"
+          >
+            <option [value]="l._id" *ngFor="let l of languages$">{{
+              l.name
+            }}</option>
+          </select>
+          <!-- <div
+            style="margin-top: 8px;"
+            class="alert alert-danger"
+            *ngIf="language.touched && !language.valid"
+          >
+            Language is required.
+          </div> -->
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label
+          for="categories"
+          class="col-sm-2 col-form-label font-weight-normal"
+          >Choose Category</label
+        >
+        <div class="col-sm-10">
+          <select
+            name="category"
+            id="category"
+            #category="ngModel"
+            class="form-control"
+            [(ngModel)]="selectedCategory"
+          >
+            <option [value]="c._id" *ngFor="let c of categories$">{{
+              c.name
+            }}</option>
+          </select>
+          <!-- <div
+            style="margin-top: 8px;"
+            class="alert alert-danger"
+            *ngIf="category.touched && !category.valid"
+          >
+            Category is required.
+          </div> -->
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top:48px">
+        <button
+          class="btn btn-primary btn-lg"
+          [disabled]="!addCourseForm.form.valid"
+          type="submit"
+          style="padding:8px 48px; border-radius: 12px;"
+          (click)="
+            addCourse(
+              name.value,
+              description.value,
+              content.value,
+              maxNumberOfStudents.value,
+              numberOfSessions.value,
+              price.value
+            )
+          "
+        >
+          Add Course
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
