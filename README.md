@@ -26,7 +26,6 @@ The Project Contains:
 # Author
 
 Mohamed Elbana [LinkedIn Profile](https://www.linkedin.com/in/mohamed-elbana-a5a214ab)
-ScolaSys
 
 Created by Mohamed Elbana on 1/6/2019.
 Copyright © 2019 Mohamed Elbana.
